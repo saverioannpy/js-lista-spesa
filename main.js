@@ -6,9 +6,9 @@ const elementUl = document.querySelector('ul.shopping-list'); //selezione l'elen
 console.log(elementUl);
 
 let answer ="si";
+let error = 0; //variabile booleana che cambia valore in 1 nel caso in cui l'utente inseriza un input errato; 
 
 do{ //ciclo do che permette all'utente di inserire nuovamente il primo input in caso di errore;
-    let error = 0; //variabile booleana che cambia valore in 1 nel caso in cui l'utente inseriza un input errato; 
     answer = prompt("Vuoi aggiungere qualcosa alla lista della spesa? (si/no)"); //chiedo all'utente se deve inserire qualcosa all'interno della lista della spesa;
     console.log("Input utente: " + answer);
     answer = answer.toLocaleLowerCase(); //per evitare errori di input decido di rendere tutti i miei caratteri minuscoli;
@@ -24,15 +24,14 @@ do{ //ciclo do che permette all'utente di inserire nuovamente il primo input in 
             do{
                 answer = prompt("Vuoi aggiungere altro alla lista della spesa? (si/no)");//chiedo all'utente se deve aggiungere altro;
                 console.log("Input utente: " + answer); 
-                answer = answer.toLocaleLowerCase(); //per evitare errori di input decido di rendere tutti i miei caratteri minuscoli.
+                answer = answer.toLocaleLowerCase(); //per evitare errori di input decido di rendere tutti i miei caratteri minuscoli;
                 console.log("Testo convertito: " + answer);
-                if((answer !== "si") && (answer !== "no")){ //controllo con questa condizione che anche l'input all'interno  dei nostri while sia corretto. 
-                    error = 1;
+                if((answer !== "si") && (answer !== "no")){ //controllo con questa condizione che anche l'input sia corretto;
+                    error = 1;//se l'input è errato la nostra variabile error assumerà il valore di 1 permettendo così all'utente di ripetere l'input grazie al nostro ciclo do;
                     alert("Errore: Risposta non valida");
                     console.log("Errore: Risposta non valida");
-                     //se l'input è errato la nostra variabile error assumerà il valore di 1 permettendo così all'utente di ripetere l'input grazie al nostro ciclo do.
                 }else{
-                    error = 0;
+                    error = 0; //se l'input è corretto ci assicuriamo che error rimanga sul valore 0;
                 }
             }while(error === 1);
         } //il ciclo si ripeterà fin quando l'utente continuerà a rispondere si;
@@ -40,9 +39,10 @@ do{ //ciclo do che permette all'utente di inserire nuovamente il primo input in 
         alert("Allora hai il frigorifero già pieno, ottimo!");
         console.log("Non c'è bisogno di fare la spesa! ");
     }else{
+        error = 1; //il ciclo si ripeterà fin quando l'utente continuerà a rispondere si;
         alert("Errore: Risposta non valida");
         console.log("Errore: Risposta non valida");
-        error = 1;
+        
     }
 }while(error === 1);
 console.log("Lista della spesa inserita dall'utente: " + shoppingList + "."); 
