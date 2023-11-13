@@ -6,9 +6,9 @@ const elementUl = document.querySelector('ul.shopping-list'); //selezione l'elen
 console.log(elementUl);
 
 let answer ="si";
-let error = 0; //variabile booleana che cambia valore in 1 nel caso in cui l'utente inseriza un input errato; 
 
-do{
+do{ //ciclo do che permette all'utente di inserire nuovamente il primo input in caso di errore;
+    let error = 0; //variabile booleana che cambia valore in 1 nel caso in cui l'utente inseriza un input errato; 
     answer = prompt("Vuoi aggiungere qualcosa alla lista della spesa? (si/no)"); //chiedo all'utente se deve inserire qualcosa all'interno della lista della spesa;
     console.log("Input utente: " + answer);
     answer = answer.toLocaleLowerCase(); //per evitare errori di input decido di rendere tutti i miei caratteri minuscoli;
@@ -16,16 +16,25 @@ do{
     if(answer === "si"){
         while(answer === "si"){ //se l'utente risponde di si allora si entra all'interno del nostro ciclo;
             const listElement = prompt("Cosa devi comprare?");//all'utente viene chiesto cosa vuole aggiungere alla propria lista;
-            console.log(listElement);
+            console.log(listElement + " è stato inserito sulla lista della spesa.");
             shoppingList.push(listElement); //inserisco l'elemento inserito nel mio array;
             const li = document.createElement('li'); //creo un elemento li per il mio elenco non ordinato;
             li.append(listElement); // "appendo" al mio elemento li l'input inserito dall'utente;
             elementUl.append(li); // "appendo" all'elenco non ordinato il mio li;
-            answer = prompt("Vuoi aggiungere altro alla lista della spesa? (si/no)");//chiedo all'utente se deve aggiungere altro;
-            console.log(answer); 
-            console.log("Testo convertito: " + answer);
-            answer = answer.toLocaleLowerCase(); //per evitare errori di input decido di rendere tutti i miei caratteri minuscoli;
-            console.log(answer); 
+            do{
+                answer = prompt("Vuoi aggiungere altro alla lista della spesa? (si/no)");//chiedo all'utente se deve aggiungere altro;
+                console.log("Input utente: " + answer); 
+                answer = answer.toLocaleLowerCase(); //per evitare errori di input decido di rendere tutti i miei caratteri minuscoli.
+                console.log("Testo convertito: " + answer);
+                if((answer !== "si") && (answer !== "no")){ //controllo con questa condizione che anche l'input all'interno  dei nostri while sia corretto. 
+                    error = 1;
+                    alert("Errore: Risposta non valida");
+                    console.log("Errore: Risposta non valida");
+                     //se l'input è errato la nostra variabile error assumerà il valore di 1 permettendo così all'utente di ripetere l'input grazie al nostro ciclo do.
+                }else{
+                    error = 0;
+                }
+            }while(error === 1);
         } //il ciclo si ripeterà fin quando l'utente continuerà a rispondere si;
     }else if(answer === "no"){
         alert("Allora hai il frigorifero già pieno, ottimo!");
