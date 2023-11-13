@@ -1,0 +1,53 @@
+/**** Reset ****/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/**** Common ****/
+
+.container{
+    max-width: 500px;
+    margin: auto;
+    
+}
+
+/**** Body ***/
+
+.shopping-list-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 50px 0px;
+    padding: 5px;
+    background-color: rgb(239, 239, 125);
+    border: 1px solid rgb(91, 83, 83);
+}
+
+.shopping-list-body{
+    border: 1px solid rgb(91, 83, 83);
+    background-color: rgba(237, 237, 237, 0.983);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 0px 50px 0px;
+    padding-bottom: 0px;
+   
+}
+
+body ul{
+    width: 100%;
+}
+
+body ul li{
+    list-style-type: circle;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+body ul hr{
+    color: rgb(91, 83, 83);
+    width: 100%;
+}
